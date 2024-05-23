@@ -1,15 +1,17 @@
 import { Table } from 'app/common/components/table/Table';
 import { Todo } from 'app/model/Todo';
+import { useTodosViewModel } from './model/useTodosViewModel';
 import { PendingTodos } from './PendingTodos';
 import { TodoTableRow } from './todo/TodoTableRow';
-import { useTodos } from './useTodos';
 
 export const TodosTable = () => {
-  const { isPending, shownTodos } = useTodos();
+  const vm = useTodosViewModel();
 
   return (
-    <PendingTodos isPending={isPending}>
-      <Table>{shownTodos?.map((todo: Todo) => <TodoTableRow key={todo.id} todo={todo} />)}</Table>
+    <PendingTodos isPending={vm.isPending}>
+      <Table>
+        {vm.shownTodos?.map((todo: Todo) => <TodoTableRow key={todo.id} todo={todo} />)}
+      </Table>
     </PendingTodos>
   );
 };

@@ -6,39 +6,42 @@ import { ListItemIcon } from 'app/common/components/list/ListItemIcon';
 import { ListItemText } from 'app/common/components/list/ListItemText';
 import { Todo } from 'app/model/Todo';
 import classNames from 'classnames';
+import { useTodoViewModel } from './model/useTodoViewModel';
 import classes from './TodoListItem.module.scss';
-import { useTodo } from './useTodo';
 
 type Props = {
   readonly todo: Todo;
 };
 
 export const TodoListItem = ({ todo: { id, title, isDone } }: Props) => {
-  const { editMutation, isEditable, removeMutation, setIsEditable, toggleDoneMutation } =
-    useTodo(id);
+  const vm = useTodoViewModel(id);
 
   const titleClasses = classNames(classes.title, isDone && classes.isDone);
 
   return (
     <ListItem className={classes.todo}>
       <ListItemIcon icon={<TodoIcon color={isDone ? 'success' : 'error'} />} />
-      {isEditable ? (
-        <EditTextInput aria-label="Edit todo" onEditComplete={editMutation.mutate} text={title} />
+      {vm.isEditable ? (
+        <EditTextInput
+          aria-label="Edit todo"
+          onEditComplete={vm.editMutation.mutate}
+          text={title}
+        />
       ) : (
         <ListItemText
           className={titleClasses}
-          onDoubleClick={() => setIsEditable(true)}
+          onDoubleClick={() => vm.setIsEditable(true)}
           text={title}
         />
       )}
       <div className={classes.buttons}>
         <IconOrButton
           icon={<CheckIcon />}
-          onClick={toggleDoneMutation.mutate}
+          onClick={vm.toggleDoneMutation.mutate}
           text={isDone ? 'Mark undone' : 'Mark done'}
         />
-        <IconOrButton icon={<EditIcon />} onClick={() => setIsEditable(true)} text="Edit" />
-        <IconOrButton icon={<RemoveIcon />} onClick={removeMutation.mutate} text="Remove" />
+        <IconOrButton icon={<EditIcon />} onClick={() => vm.setIsEditable(true)} text="Edit" />
+        <IconOrButton icon={<RemoveIcon />} onClick={vm.removeMutation.mutate} text="Remove" />
       </div>
     </ListItem>
   );

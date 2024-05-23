@@ -3,7 +3,7 @@ import { ControlsContext } from 'app/contexts/ControlsContext';
 import todoService from 'app/services/FakeTodoService';
 import { useContext } from 'react';
 
-export const useHeader = () => {
+export const useHeaderViewModel = () => {
   const [, dispatch] = useContext(ControlsContext);
 
   const { data: todos } = useQuery({
@@ -13,5 +13,13 @@ export const useHeader = () => {
 
   const undoneTodoCount = todos?.filter(({ isDone }) => !isDone).length;
 
-  return { dispatch, undoneTodoCount };
+  return {
+    setTodoFilterText: (event: React.ChangeEvent<HTMLInputElement>) =>
+      dispatch({
+        type: 'SET_TODO_FILTER_TEXT',
+        payload: event.target.value
+      }),
+
+    undoneTodoCount
+  };
 };

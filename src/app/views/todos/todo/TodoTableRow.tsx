@@ -6,16 +6,15 @@ import { TableCell } from 'app/common/components/table/TableCell';
 import { TableRow } from 'app/common/components/table/TableRow';
 import { Todo } from 'app/model/Todo';
 import classNames from 'classnames';
+import { useTodoViewModel } from './model/useTodoViewModel';
 import classes from './TodoTableRow.module.scss';
-import { useTodo } from './useTodo';
 
 type Props = {
   readonly todo: Todo;
 };
 
 export const TodoTableRow = ({ todo: { id, title, isDone } }: Props) => {
-  const { editMutation, isEditable, removeMutation, setIsEditable, toggleDoneMutation } =
-    useTodo(id);
+  const vm = useTodoViewModel(id);
 
   const titleClasses = classNames(classes.title, isDone && classes.isDone);
 
@@ -26,21 +25,21 @@ export const TodoTableRow = ({ todo: { id, title, isDone } }: Props) => {
           aria-label={title}
           isChecked={isDone}
           color="success"
-          onChange={toggleDoneMutation.mutate}
+          onChange={vm.toggleDoneMutation.mutate}
         />
       </TableCell>
-      {isEditable ? (
+      {vm.isEditable ? (
         <TableCell>
-          <EditTextInput onEditComplete={editMutation.mutate} text={title} />
+          <EditTextInput onEditComplete={vm.editMutation.mutate} text={title} />
         </TableCell>
       ) : (
-        <TableCell className={titleClasses} onDoubleClick={() => setIsEditable(true)}>
+        <TableCell className={titleClasses} onDoubleClick={() => vm.setIsEditable(true)}>
           {title}
         </TableCell>
       )}
       <TableCell className={classes.buttons}>
-        <IconButton icon={<EditIcon />} onClick={() => setIsEditable(true)} />
-        <IconButton icon={<RemoveIcon />} onClick={removeMutation.mutate} />
+        <IconButton icon={<EditIcon />} onClick={() => vm.setIsEditable(true)} />
+        <IconButton icon={<RemoveIcon />} onClick={vm.removeMutation.mutate} />
       </TableCell>
     </TableRow>
   );

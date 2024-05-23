@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import todoService from 'app/services/FakeTodoService';
 import { useState } from 'react';
 
-export const useTodoAdding = () => {
+export const useAddTodoViewModel = () => {
   const [todoTitle, setTodoTitle] = useState('');
   const queryClient = useQueryClient();
 

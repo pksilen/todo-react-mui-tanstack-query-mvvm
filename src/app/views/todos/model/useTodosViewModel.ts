@@ -5,7 +5,7 @@ import { Todo } from 'app/model/Todo';
 import todoService from 'app/services/FakeTodoService';
 import { useContext } from 'react';
 
-export const useTodos = () => {
+export const useTodosViewModel = () => {
   const [{ lowerCaseTodoFilterText, shouldShowUndoneTodosOnly }] = useContext(ControlsContext);
 
   const { data: todos, isPending } = useQuery({

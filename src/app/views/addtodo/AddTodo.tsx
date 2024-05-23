@@ -1,19 +1,19 @@
 import { Button } from '@mui/material';
 import { TextInput } from 'app/common/components/inputs/TextInput';
 import classes from './AddTodo.module.scss';
-import { useTodoAdding } from './useTodoAdding';
+import { useAddTodoViewModel } from './model/useAddTodoViewModel';
 
 export const AddTodo = () => {
-  const { maybeAddTodo, setTodoTitle, todoTitle } = useTodoAdding();
+  const vm = useAddTodoViewModel();
 
   return (
     <section className={classes.addTodo}>
       <TextInput
         label="Add new todo..."
-        onChange={(event) => setTodoTitle(event.target.value)}
-        value={todoTitle}
+        onChange={(event) => vm.setTodoTitle(event.target.value)}
+        value={vm.todoTitle}
       />
-      <Button className={classes.button} onClick={maybeAddTodo}>
+      <Button className={classes.button} onClick={vm.maybeAddTodo}>
         Add todo
       </Button>
     </section>

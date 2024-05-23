@@ -3,14 +3,14 @@ import { createTheme } from '@mui/material/styles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useReducer } from 'react';
 import classes from './App.module.scss';
-import { AddTodo } from './components/addtodo/AddTodo';
-import { Controls } from './components/controls/Controls';
-import { ErrorBoundary } from './components/errorboundary/ErrorBoundary';
-import { Header } from './components/header/Header';
-import { TodosTable } from './components/todos/TodosTable';
+import { AddTodo } from './views/addtodo/AddTodo';
+import { Controls } from './views/controls/Controls';
+import { ErrorBoundary } from './views/errorboundary/ErrorBoundary';
+import { Header } from './views/header/Header';
+import { TodosTable } from './views/todos/TodosTable';
 import { ControlsContext } from './contexts/ControlsContext';
 import { controlsInitialState, controlsStateReducer } from './contexts/controlsStateReducer';
-import { TodosList } from './components/todos/TodosList';
+import { TodosList } from './views/todos/TodosList';
 
 const queryClient = new QueryClient();
 
