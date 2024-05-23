@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ControlsContext } from '../../../contexts/ControlsContext';
+import { ControlsContext } from '../../../model/contexts/ControlsContext';
 
 export const useControlsViewModel = () => {
   const [, dispatch] = useContext(ControlsContext);

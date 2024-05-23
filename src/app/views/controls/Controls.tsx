@@ -10,7 +10,7 @@ import {
   TableIcon
 } from 'app/common/components/icons/Icons';
 import { Switch } from 'app/common/components/switches/Switch';
-import { ViewType } from 'app/contexts/ControlsContext';
+import { ViewType } from 'app/model/contexts/ControlsContext';
 import classes from './Controls.module.scss';
 import { useControlsViewModel } from './model/useControlsViewModel';
 
