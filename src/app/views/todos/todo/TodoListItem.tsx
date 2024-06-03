@@ -24,7 +24,7 @@ export const TodoListItem = ({ todo: { id, title, isDone } }: Props) => {
       {vm.isEditable ? (
         <EditTextInput
           aria-label="Edit todo"
-          onEditComplete={vm.editMutation.mutate}
+          onEditComplete={vm.changeTitleMutation.mutate}
           text={title}
         />
       ) : (
