@@ -9,8 +9,8 @@ import {
   ListIcon,
   TableIcon
 } from 'app/common/components/icons/Icons';
-import { Switch } from 'app/common/components/switches/Switch';
 import { ViewType } from 'app/model/contexts/ControlsContext';
+import { Switch } from '../../common/components/inputs/Switch';
 import classes from './Controls.module.scss';
 import { useControlsViewModel } from './model/useControlsViewModel';
 
@@ -18,13 +18,13 @@ export const Controls = () => {
   const vm = useControlsViewModel();
 
   const viewTypeButtons: IconRadioButtonProps<ViewType>[] = [
-    { icon: <ListIcon />, onClick: vm.showListView, value: 'list' },
-    { icon: <TableIcon />, onClick: vm.showTableView, value: 'table' }
+    { icon: <ListIcon />, onClick: () => vm.setViewType('list'), value: 'list' },
+    { icon: <TableIcon />, onClick: () => vm.setViewType('table'), value: 'table' }
   ];
 
   const viewModeButtons: IconRadioButtonProps<PaletteMode>[] = [
-    { icon: <LightModeIcon />, onClick: vm.activateLightMode, value: 'light' },
-    { icon: <DarkModeIcon />, onClick: vm.activateDarkMode, value: 'dark' }
+    { icon: <LightModeIcon />, onClick: () => vm.setViewMode('light'), value: 'light' },
+    { icon: <DarkModeIcon />, onClick: () => vm.setViewMode('dark'), value: 'dark' }
   ];
 
   return (

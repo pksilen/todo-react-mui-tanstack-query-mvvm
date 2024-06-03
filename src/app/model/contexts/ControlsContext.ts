@@ -1,6 +1,7 @@
 import { ThemeOptions } from '@mui/material';
 import { createContext, Dispatch } from 'react';
 
+export type ViewMode = 'dark' | 'light';
 export type ViewType = 'list' | 'table';
 
 export type ControlsState = {
